@@ -10,7 +10,7 @@ namespace capstone.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PeopleController : Controller
+    public class PeopleController : ControllerBase
     {
         private ApplicationDbContext _context;
         public PeopleController(ApplicationDbContext context)

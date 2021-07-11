@@ -1,1 +1,33 @@
-<p>person works!</p>
+<h1 id="tableLabel">Teachers</h1>
+
+<p *ngIf="!people"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="people">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+    <th>Is Friend</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let s of people">
+    <td>{{s.id}}</td>
+    <td>{{ s.firstName }}</td>
+    <td>{{ s.lastName }}</td>
+    <td>{{s.age}}</td>
+    <td>{{s.isFriend}}</td>
+  </tr>
+  </tbody>
+</table>
+First Name
+<input [(ngModel)]="newPerson.firstName" name="firstName" />
+Last Name
+<input [(ngModel)]="newPerson.lastName" name="lastName" />
+Age
+<input type="number" [(ngModel)]="newPerson.age" name="age" />
+Is Friend
+<input type="checkbox" [(ngModel)]="newPerson.isFriend" name="isFriend" />
+<button (click)="save()">Save</button>

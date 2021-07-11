@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {IPerson} from "../interfaces/i-person";
+import {PeopleService} from "../services/people.service";
 
 @Component({
   selector: 'app-person',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonComponent implements OnInit {
 
-  constructor() { }
+  people: IPerson[] = [];
+  newPerson: IPerson = {
+    firstName: '',
+    lastName: '',
+    age: 0,
+    isFriend: false
+  }
+  constructor(private peopleService: PeopleService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.people = await this.peopleService.getPeople();
+  }
+
+  async save() {
+    let person = await this.peopleService.addPerson(this.newPerson);
+    this.people.push(person);
   }
 
 }
